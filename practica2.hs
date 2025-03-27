@@ -35,10 +35,13 @@ recuperarElemento (x:xs) n = if n < 0 || n >= length (x:xs)  -- En caso de que s
                                 else recuperarElemento xs (n - 1)  -- Caso recursivo
 
 divisoresDeN :: Int -> [Int]
-divisoresDeN = undefined
+divisoresDeN n = [x | x <- [1..n], n `mod` x == 0]
 
 conjuntoLista :: Eq a => [a] -> [a]
-conjuntoLista = undefined
+conjuntoLista [] = []  -- Caso base
+conjuntoLista (x:xs) = if x `elem` xs  -- Si el elemento x ya está en el resto de la lista
+                        then conjuntoLista xs  -- Se ignoramos y seguimos
+                        else x : conjuntoLista xs  -- Si no, lo agregamos al conjunto
 
 soloPares :: [Int] -> [Int]
-soloPares = undefined
+soloPares xs = [x | x <- xs, x `mod` 2 == 0]
